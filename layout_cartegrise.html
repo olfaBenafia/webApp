@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rabeb_PFE_Streamlink</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<style>
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        th {
+            background-color: #2DA9DF;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <h1 class="display-5">
+                <span class="title">Analyseur Automatique Documents</span>
+            <img src="{{ url_for('static', filename='src/Logo1.png') }}"  alt="Logo Stream P" width="50" height="50" class="image">
+            </h1>
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+    <br><br>
+    <form action="#" method="POST" enctype="multipart/form-data">
+        <div class="input-group justify-content-center">
+            <label for="recto">Upload Recto: </label>
+            <input type="file" class="form-control" name="recto" id="recto" required>
+        </div>
+        <br>
+        <div class="input-group justify-content-center">
+            <label for="verso">Upload Verso: </label>
+            <input type="file" class="form-control" name="verso" id="verso" required>
+        </div>
+        <br>
+        <div class="input-group justify-content-center">
+        <input type="submit" value="Upload" class="btn btn-outline-secondary">
+        </div>
+
+    </form>
+</div>
+
+{% if upload %}
+<div class="'container">
+    <br><br>
+     <table>
+        <tr>
+            <td>
+                <img class="rounded float-left img-fluid" src="{{ url_for('static', filename='upload/' ~ upload_image_recto) }}" alt="upload_image_recto">
+            </td>
+            <td>
+               <img class="rounded float-right img-fluid" src="{{ url_for('static', filename='predict/image_rotated_recto.png.png') }}" alt="predictimage">
+            </td>
+        </tr>
+
+         <tr>
+            <td>
+                <img class="rounded float-right img-fluid" src="{{ url_for('static', filename='upload/' ~ upload_image_verso) }}" alt="upload_image_verso">
+            </td>
+            <td>
+               <img class="rounded float-right img-fluid" src="{{ url_for('static', filename='predict/image_rotated_verso.png.png') }}" alt="predictimage">
+            </td>
+        </tr>
+    </table>
+
+    <h1>Les Segments de la Carte Grise (Recto) :</h1>
+    <table border="1">
+        <tr>
+            {% for key in data_recto.keys() %}
+                <th>{{ key }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for key, value in data_recto.items() %}
+                <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    <h1>Les Segments de la Carte Grise (Verso) :</h1>
+    <table border="1">
+        <tr>
+            {% for key in data_verso.keys() %}
+                <th>{{ key }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for key, value in data_verso.items() %}
+                <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+
+
+</div>
+{% endif %}
+
+
+
+
+
+
+
+<footer>
+      <img src="{{ url_for('static', filename='src/Logo2.png') }}"  alt="Logo Stream"  width="100" height="50">
+</footer>
+
+</body>
+</html>

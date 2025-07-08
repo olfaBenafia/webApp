@@ -1,0 +1,25 @@
+@echo off
+REM Assure-toi d'être dans le dossier du projet et que .venv est activé
+
+echo Uninstalling existing Paddle packages...
+pip uninstall paddlepaddle -y
+pip uninstall paddle -y
+
+echo Removing paddle folder if exists...
+IF EXIST ".venv\Lib\site-packages\paddle" (
+    rmdir /S /Q ".venv\Lib\site-packages\paddle"
+)
+
+echo Installing PaddlePaddle CPU stable version...
+pip install paddlepaddle==2.5.2 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+
+echo Setting PATH for Paddle DLLs and running main.py...
+set PATH=%CD%\.venv\Lib\site-packages\paddle\libs;%PATH%
+
+echo Running paddle check...
+python -c "import paddle; paddle.utils.run_check()"
+
+echo Running your main.py script...
+python main.py
+
+pause

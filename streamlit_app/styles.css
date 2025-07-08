@@ -1,0 +1,27 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Hide Streamlit default elements */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+.stDeployButton {display: none;}
+
+/* Root variables */
+:root {
+  --primary-color: #00bcd4;
+  --primary-dark: #0097a7;
+  --secondary-color: #1e3c72;
+  --accent-color: #2a5298;
+  --text-primary: #ffffff;
+  --text-secondary: #b0bec5;
+  --success-color: #4caf50;
+  --error-color: #f44336;
+  --warning-color: #ff9800;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Your full CSS continues here */
